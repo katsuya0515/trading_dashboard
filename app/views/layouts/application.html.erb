@@ -9,8 +9,21 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice].present? %>
+      <span class="alert alert-success" id="alert-message">
+          <%= flash[:notice] %>
+      </span>
+    <% elsif flash[:alert].present? %>
+      <span class="alert alert-danger" id="alert-message">
+        <%= flash[:alert] %>
+      </span>
+    <% end %>
     <%= yield %>
   </body>
 </html>
+
+<script type="text/javascript">
+  setTimeout(function() {
+    $('#alert-message').fadeOut();
+  }, 3000);
+</script>

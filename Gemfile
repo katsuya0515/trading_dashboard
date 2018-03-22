@@ -19,6 +19,8 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Use for chart
+gem 'fusioncharts-rails'
 # Use for login
 gem 'devise'
 # Use CoffeeScript for .coffee assets and views
