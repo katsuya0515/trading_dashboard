@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require fusioncharts/fusioncharts
+//= require fusioncharts/fusioncharts.charts
+//= require fusioncharts/fusioncharts.theme.fint
+//= require popper.min
+//= require plugins
+//= require main
+// require dashboard
+// require widgets
 //= require turbolinks
 // require_tree .

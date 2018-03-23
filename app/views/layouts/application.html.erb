@@ -6,11 +6,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if user_signed_in?%>
+      <%= render partial: "layouts/header" %>
+    <% end %>
+      <% if flash[:notice].present? %>
+        <span class="alert alert-success" id="alert-message">
+            <%= flash[:notice] %>
+        </span>
+      <% elsif flash[:alert].present? %>
+        <span class="alert alert-danger" id="alert-message">
+          <%= flash[:alert] %>
+        </span>
+      <% end %>
     <%= yield %>
   </body>
 </html>
+
+<script type="text/javascript">
+  setTimeout(function() {
+    $('#alert-message').fadeOut();
+  }, 3000);
+</script>

@@ -11,6 +11,12 @@
  * It is generally better to create a new file per style scope.
  *
  * require_tree .
+ *= require normalize
  *= require bootstrap
+ *= require font-awesome.min
+ *= require themify-icons
+ *= require flag-icon.min
+ *= require style
+ *= require animate
  *= require_self
  */
