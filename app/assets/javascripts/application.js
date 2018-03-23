@@ -16,8 +16,10 @@
 //= require fusioncharts/fusioncharts
 //= require fusioncharts/fusioncharts.charts
 //= require fusioncharts/fusioncharts.theme.fint
-// require popper.min
-// require plugins
-// require main
+//= require popper.min
+//= require plugins
+//= require main
+// require dashboard
+// require widgets
 //= require turbolinks
 // require_tree .

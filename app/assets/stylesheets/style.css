@@ -1072,7 +1072,7 @@ body.open .navbar .navbar-brand.hidden {
 
 /* Right panel */
 .right-panel {
-  display: table-cell;
+  /*display: table-cell;*/
   padding-left: 0 !important;
   -webkit-transition: all .35s ease;
   -moz-transition: all .35s ease;
@@ -1114,8 +1114,8 @@ body.open .navbar .navbar-brand.hidden {
   padding: 15px 20px 13px 20px;
   width: 100%; }
 
-.open .right-panel {
-  margin-left: -210px; }
+/*.open .right-panel {
+  margin-left: -210px; }*/
 
 header.fixed-top {
   background: #fff;
@@ -1464,10 +1464,10 @@ header .form-inline {
   color: #fff; }
 
 .black-ribon {
-  background: url("../../images/twitter_corner_black.png") no-repeat; }
+  background: url("/assets/twitter_corner_black.png") no-repeat; }
 
 .blue-ribon {
-  background: url("../../images/twitter_corner_blue.png") no-repeat; }
+  background: url("/assets/twitter_corner_blue.png") no-repeat; }
 
 .twt-feed .wtt-mark {
   color: rgba(255, 255, 255, 0.15);
