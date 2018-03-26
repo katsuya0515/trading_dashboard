@@ -12,11 +12,12 @@
  *
  * require_tree .
  *= require normalize
- *= require bootstrap
+ *= require bootstrap.min
  *= require font-awesome.min
  *= require themify-icons
  *= require flag-icon.min
  *= require style
  *= require animate
+ *= require dataTables.bootstrap.min
  *= require_self
  */

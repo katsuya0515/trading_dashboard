@@ -22,4 +22,9 @@
 // require dashboard
 // require widgets
 //= require turbolinks
+
+//= require datatables.min
+//= require dataTables.bootstrap.min
+//= require dataTables.buttons.min
+//= require datatables-init
 // require_tree .
