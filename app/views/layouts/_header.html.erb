@@ -11,7 +11,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                      <%= link_to root_path do %> <i class="menu-icon fa fa-dashboard"></i>Dashboard <% end %>
                     </li>
 
                 </ul>
@@ -44,8 +44,8 @@
                       </a>
 
                       <div class="user-menu dropdown-menu">
-                              <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                              <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                              <%= link_to edit_user_registration_path, class: "nav-link" do %><i class="fa fa- user"></i>My Profile<% end %>
+                              <%= link_to "#", class: "nav-link" do %><i class="fa fa -cog"></i>Settings<% end %>
                               <%= link_to destroy_user_session_path, method: :delete, class:"nav-link" do %><i class="fa fa-power -off"></i>Logout<% end %>
                       </div>
                   </div>
