@@ -19,5 +19,6 @@
  *= require style
  *= require animate
  *= require dataTables.bootstrap.min
+ *= require custom
  *= require_self
  */

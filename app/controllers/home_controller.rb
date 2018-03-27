@@ -12,7 +12,11 @@ class HomeController < ApplicationController
     @users_trading_data.values.each do |values|
       data << {"value": values.pluck(:investment, :payout).map{|revenue| (revenue[0]-revenue[1]).abs}.sum}
     end
-    # .map(&:reduce(:-).abs)
+
+    betting_count = []
+    @users_trading_data.values.each do |values|
+      betting_count << {"value": values.count}
+    end
 
     @chart = Fusioncharts::Chart.new({
       width: "600",
@@ -21,13 +25,13 @@ class HomeController < ApplicationController
       renderAt: "chart-container",
       dataSource: {
         chart: {
-        caption: "Comparison of Quarterly Revenue",
-        subCaption: "Harry's SuperMart",
-        xAxisname: "Quarter",
-        yAxisName: "Amount ($)",
-        numberPrefix: "$",
-        theme: "fint",
-        exportEnabled: "1",
+          caption: "Comparison of Revenue",
+          # subCaption: "Harry's SuperMart",
+          xAxisname: "Time",
+          yAxisName: "Amount ($)",
+          numberPrefix: "$",
+          theme: "fint",
+          exportEnabled: "1",
         },
         categories: [{
           "category": category
@@ -36,6 +40,12 @@ class HomeController < ApplicationController
           "seriesName": "Time",
           "showValues": "1",
           "data": data
+        },
+        {
+          "seriesName": "Betting count",
+          "parentYAxis": "S",
+          "renderAs": "line",
+          "data": betting_count
         }]
       }
     })

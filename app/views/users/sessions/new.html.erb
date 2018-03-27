@@ -7,27 +7,25 @@
               </div>
               <div class="login-form">
                   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                      <div class="form-group">
-                          <label>Email address</label>
-                          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
-                      </div>
-                      <div class="form-group">
-                          <label>Password</label>
-                          <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
-                      </div>
-                      <div class="checkbox">
-                          <% if devise_mapping.rememberable? -%>
-                            <label>
-                                <%= f.check_box :remember_me %> Remember Me
-                            </label>
-                          <% end -%>
-                          <label class="pull-right">
-                              <%= render "users/shared/links" %>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
+                    </div>
+                    <div class="checkbox">
+                        <% if devise_mapping.rememberable? -%>
+                          <label>
+                              <%= f.check_box :remember_me %> Remember Me
                           </label>
-
-                      </div>
-                      <%= f.submit "Sign in", class:"btn btn-success btn-flat m-b-30 m-t-30" %>
-
+                        <% end -%>
+                        <label class="pull-right">
+                          <%= link_to "Forgot your password?", new_user_password_path(resource_name) %><br />
+                        </label>
+                    </div>
+                    <%= f.submit "Sign in", class:"btn btn-success btn-flat m-b-30 m-t-30" %>
                   <% end %>
               </div>
           </div>
