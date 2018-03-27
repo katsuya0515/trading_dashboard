@@ -8,16 +8,15 @@
         </div>
         <%= form_for(resource, as: resource_name, url: user_registration_path(id: resource.id), html: { method: :put }) do |f| %>
           <div class="card-body card-block">
-              <%#= devise_error_messages! %>
               <div class="form-group">
                 <%= f.label :email, class: "form-control-label" %>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter Email..." %>
-                <span class="help-block hide">Please enter your email</span>
+                <span class="help-block error"> <%= resource.errors.full_messages_for(:email)[0] if resource.errors.full_messages_for(:email).present? %> </span>
               </div>
               <div class="form-group">
                 <%= f.label :password, class: "form-control-label" %> <i>(leave blank if you don't want to change it)</i><br />
                 <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Enter your Password..." %>
-                <span class="help-block hide">Please enter your passsword</span>
+                <span class="help-block error"><%= resource.errors.full_messages_for(:password)[0] if resource.errors.full_messages_for(:password).present? %></span>
                 <% if @minimum_password_length %>
                   <br />
                   <em><%= @minimum_password_length %> characters minimum</em>
@@ -27,13 +26,13 @@
               <div class="form-group">
                 <%= f.label :password_confirmation, class: "form-control-label" %><br />
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confrim Password..." %>
-                <span class="help-block hide">Please confirm your passsword</span>
+                <span class="help-block error"><%= resource.errors.full_messages_for(:password_confirmation)[0] if resource.errors.full_messages_for(:password_confirmation).present? %></span>
               </div>
 
               <div class="form-group">
                 <%= f.label :current_password, class: "form-control-label" %> <i>(we need your current password to confirm your changes)</i><br />
                 <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Enter your current Password..." %>
-                <span class="help-block hide">Please enter your current passsword</span>
+                <span class="help-block error"><%= resource.errors.full_messages_for(:current_password)[0] if resource.errors.full_messages_for(:current_password).present? %></span>
               </div>
 
           </div>
