@@ -3,7 +3,7 @@
     <h1>Welcome..!!</h1>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           <h4>Default Tab</h4>
@@ -15,6 +15,8 @@
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-default-1" role="tab" aria-controls="nav-home" aria-selected="true">Default-1</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-default-2" role="tab" aria-controls="nav-profile" aria-selected="false">Default-2</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-3" role="tab" aria-controls="nav-contact" aria-selected="false">Default-3</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-4" role="tab" aria-controls="nav-contact" aria-selected="false">Wallet</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-5" role="tab" aria-controls="nav-contact" aria-selected="false">Betting Histroy</a>
               </div>
             </nav>
             <div class="tab-content pl-3 pt-2" id="nav-tabContent">
@@ -29,74 +31,56 @@
               <div class="tab-pane fade" id="nav-default-3" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <p>Default 3</p>
               </div>
+              <div class="tab-pane fade" id="nav-default-4" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <table id="bootstrap-data-table1" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Wallet Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if @user_accounts.present? %>
+                      <% @user_accounts.each do |account| %>
+                        <tr>
+                          <td><%= account.user_name %></td>
+                          <td>$<%= account.wallet_amount %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane fade" id="nav-default-5" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Assets Name</th>
+                      <th>Strike Rate</th>
+                      <th>Status</th>
+                      <th>Closing Rate</th>
+                      <th>Investment</th>
+                      <th>Payout</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if @user_tradings.present? %>
+                      <% @user_tradings.each do |trading| %>
+                        <tr>
+                          <td><%= trading.assets_name %></td>
+                          <td><%= trading.strike_rate %></td>
+                          <td><%= trading.status %></td>
+                          <td><%= trading.closing_rate %></td>
+                          <td>$<%= trading.investment %></td>
+                          <td>$<%= trading.payout %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
             </div>
-
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          <strong class="card-title">Wallet</strong>
-        </div>
-        <div class="card-body">
-          <table id="bootstrap-data-table1" class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Wallet Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if @user_accounts.present? %>
-                <% @user_accounts.each do |account| %>
-                  <tr>
-                    <td><%= account.user_name %></td>
-                    <td>$<%= account.wallet_amount %></td>
-                  </tr>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <strong class="card-title">Betting Histroy</strong>
-        </div>
-        <div class="card-body">
-          <table id="bootstrap-data-table" class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Assets Name</th>
-                <th>Strike Rate</th>
-                <th>Status</th>
-                <th>Closing Rate</th>
-                <th>Investment</th>
-                <th>Payout</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if @user_tradings.present? %>
-                <% @user_tradings.each do |trading| %>
-                  <tr>
-                    <td><%= trading.assets_name %></td>
-                    <td><%= trading.strike_rate %></td>
-                    <td><%= trading.status %></td>
-                    <td><%= trading.closing_rate %></td>
-                    <td>$<%= trading.investment %></td>
-                    <td>$<%= trading.payout %></td>
-                  </tr>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
@@ -107,9 +91,6 @@
 <script>
   $(document).ready(function() {
     $('#bootstrap-data-table').DataTable();
-    $('#bootstrap-data-table1').DataTable({
-      responsive: true,
-      dom: "<'row'<'col-sm-12'l><'col-sm-6'f>>"
-    });
+    $('#bootstrap-data-table1').DataTable();
   });
 </script>
