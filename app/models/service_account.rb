@@ -1,3 +1,3 @@
 class ServiceAccount < ApplicationRecord
-  belongs_to :user_services
+  belongs_to :user_service
 end
