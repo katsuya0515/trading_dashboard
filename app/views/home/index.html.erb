@@ -15,15 +15,11 @@
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-default-1" role="tab" aria-controls="nav-home" aria-selected="true">Default-1</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-default-2" role="tab" aria-controls="nav-profile" aria-selected="false">Default-2</a>
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-3" role="tab" aria-controls="nav-contact" aria-selected="false">Default-3</a>
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-4" role="tab" aria-controls="nav-contact" aria-selected="false">Wallet</a>
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-default-5" role="tab" aria-controls="nav-contact" aria-selected="false">Betting Histroy</a>
               </div>
             </nav>
             <div class="tab-content pl-3 pt-2" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-default-1" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div id="chart-container">
-                  <%= @chart.render() %>
-                </div>
+                <p>Default 1</p>
               </div>
               <div class="tab-pane fade" id="nav-default-2" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <p>Default 2</p>
@@ -31,55 +27,7 @@
               <div class="tab-pane fade" id="nav-default-3" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <p>Default 3</p>
               </div>
-              <div class="tab-pane fade" id="nav-default-4" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <table id="bootstrap-data-table1" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Username</th>
-                      <th>Wallet Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% if @user_accounts.present? %>
-                      <% @user_accounts.each do |account| %>
-                        <tr>
-                          <td><%= account.user_name %></td>
-                          <td>$<%= account.wallet_amount %></td>
-                        </tr>
-                      <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-              <div class="tab-pane fade" id="nav-default-5" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Assets Name</th>
-                      <th>Strike Rate</th>
-                      <th>Status</th>
-                      <th>Closing Rate</th>
-                      <th>Investment</th>
-                      <th>Payout</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% if @user_tradings.present? %>
-                      <% @user_tradings.each do |trading| %>
-                        <tr>
-                          <td><%= trading.assets_name %></td>
-                          <td><%= trading.strike_rate %></td>
-                          <td><%= trading.status %></td>
-                          <td><%= trading.closing_rate %></td>
-                          <td>$<%= trading.investment %></td>
-                          <td>$<%= trading.payout %></td>
-                        </tr>
-                      <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          </div>
           </div>
         </div>
       </div>
