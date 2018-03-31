@@ -1,6 +1,15 @@
 class HomeController < ApplicationController
   def index
-    @services = current_user.services
+    @main_services = current_user.main_services
+
+    @services = []
+
+    @main_services.each do |service|
+      @services << Service.find(service)
+    end
+
+    p "========================"
+    p @services 
     # @service_accounts = current_user.service_accounts
     # @user_service_wallets = current_user.user_service_wallets
     #
