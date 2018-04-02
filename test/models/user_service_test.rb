@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserAccountTest < ActiveSupport::TestCase
+class UserServiceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
