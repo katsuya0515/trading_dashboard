@@ -20,7 +20,99 @@
             <div class="tab-content pl-3 pt-2" id="nav-tabContent">
               <% @services.each_with_index do |service, index|%>
                 <div class="tab-pane fade show <%= 'active' if index == 0 %>" id="nav-<%= service.name.parameterize %>" role="tabpanel" aria-labelledby="nav-<%= service.name.parameterize %>-tab">
-                  <p><%= service.name %></p>
+                  <div class="col-md-8">
+                    <p><%= service.name %></p>
+                    <div id="chart-container-<%= service.name.parameterize %>">
+                      <%= service.chart(current_user.id) %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <strong class="card-title">Wallet</strong>
+                      </div>
+                      <table id="bootstrap-data-table-wallet-<%= service.name.parameterize %>" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                          <th>Service Name</th>
+                            <th>Wallet Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% if service.childs.present? %>
+                            <% service.childs.each do |child| %>
+                              <tr>
+                                <td><%= child.name %></td>
+                                <td><%= child.user_services.find_by(user_id: current_user.id).wallet_amount %></td>
+                              </tr>
+                            <% end %>
+                          <% else %>
+                              <tr>
+                                <td><%= service.name %></td>
+                                <td><%= service.user_services.find_by(user_id: current_user.id).wallet_amount %></td>
+                              </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <strong class="card-title">Betting Histroy</strong>
+                      </div>
+                      <div class="card-body">
+                        <table id="bootstrap-data-table-betting-<%= service.name.parameterize %>" class="table table-striped table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Service Name</th>
+                              <th>Assets Name</th>
+                              <th>Strike Rate</th>
+                              <th>Status</th>
+                              <th>Closing Rate</th>
+                              <th>Investment</th>
+                              <th>Payout</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% if service.childs.present? %>
+                              <% service.childs.each do |child| %>
+                                <% child.service_accounts.each do |serviceAcc| %>
+                                  <% if  serviceAcc.user_id == current_user.id %>
+                                    <tr>
+                                      <td><%= child.name %></td>
+                                      <td><%= serviceAcc.assets_name %></td>
+                                      <td><%= serviceAcc.strike_rate %></td>
+                                      <td><%= serviceAcc.status %></td>
+                                      <td><%= serviceAcc.closing_rate %></td>
+                                      <td><%= serviceAcc.investment %></td>
+                                      <td><%= serviceAcc.payout %></td>
+                                    </tr>
+                                  <% end %>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <% service.service_accounts.each do |serviceAcc| %>
+                                <% if  serviceAcc.user_id == current_user.id %>
+                                  <tr>
+                                    <td><%= service.name %></td>
+                                    <td><%= serviceAcc.assets_name %></td>
+                                    <td><%= serviceAcc.strike_rate %></td>
+                                    <td><%= serviceAcc.status %></td>
+                                    <td><%= serviceAcc.closing_rate %></td>
+                                    <td><%= serviceAcc.investment %></td>
+                                    <td><%= serviceAcc.payout %></td>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               <% end %>
           </div>
@@ -34,7 +126,45 @@
 
 <script>
   $(document).ready(function() {
-    $('#bootstrap-data-table').DataTable();
-    $('#bootstrap-data-table1').DataTable();
+   '<% @services.each_with_index do |service, index|%>'
+      $('#bootstrap-data-table-wallet-<%= service.name.parameterize %>').DataTable({responsive: true, dom: "<'row'<'col-sm-12'l><'col-sm-6'f>>"});
+      // $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({responsive: true});
+
+      var table<%= index %> = $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({
+          "columnDefs": [
+              { "visible": false, "targets": 0 }
+          ],
+          "order": [[ 0, 'asc' ]],
+          "displayLength": 25,
+          "drawCallback": function ( settings ) {
+              var api<%= index %> = this.api();
+              var rows<%= index %> = api<%= index %>.rows( {page:'current'} ).nodes();
+              var last<%= index %> = null;
+
+              api<%= index %>.column(0, {page:'current'} ).data().each( function ( group, i ) {
+                  if ( last<%= index %> !== group ) {
+                      $(rows<%= index %>).eq( i ).before(
+                          '<tr class="group"><td colspan="6">'+group+'</td></tr>'
+                      );
+
+                      last<%= index %> = group;
+                  }
+              } );
+          }
+      } );
+
+      // Order by the grouping
+      $('#bootstrap-data-table-betting-<%= service.name.parameterize %> tbody').on( 'click', 'tr.group', function () {
+          var currentOrder = table<%= index %>.order()[0];
+          if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+              table<%= index %>.order( [ 2, 'desc' ] ).draw();
+          }
+          else {
+              table<%= index %>.order( [ 2, 'asc' ] ).draw();
+          }
+      } );
+
+   '<% end %>'
   });
+
 </script>
