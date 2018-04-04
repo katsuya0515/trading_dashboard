@@ -85,7 +85,7 @@
                                       <td><%= child.name %></td>
                                       <td><%= serviceAcc.assets_name %></td>
                                       <td><%= serviceAcc.strike_rate %></td>
-                                      <td><%= serviceAcc.status %></td>
+                                      <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
                                       <td><%= serviceAcc.closing_rate %></td>
                                       <td><%= serviceAcc.investment %></td>
                                       <td><%= serviceAcc.payout %></td>
@@ -100,7 +100,7 @@
                                     <td><%= service.name %></td>
                                     <td><%= serviceAcc.assets_name %></td>
                                     <td><%= serviceAcc.strike_rate %></td>
-                                    <td><%= serviceAcc.status %></td>
+                                    <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
                                     <td><%= serviceAcc.closing_rate %></td>
                                     <td><%= serviceAcc.investment %></td>
                                     <td><%= serviceAcc.payout %></td>
