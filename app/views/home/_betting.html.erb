@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    <strong class="card-title">Betting Histroy</strong>
+  </div>
+  <div class="card-body">
+    <table id="bootstrap-data-table-betting-<%= service.name.parameterize %>" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Service Name</th>
+          <th>Assets Name</th>
+          <th>Strike Rate</th>
+          <th>Status</th>
+          <th>Closing Rate</th>
+          <th>Investment</th>
+          <th>Payout</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if service.childs.present? %>
+          <% service.childs.each do |child| %>
+            <% child.service_accounts.each do |serviceAcc| %>
+              <% if  serviceAcc.user_id == current_user.id %>
+                <tr>
+                  <td><%= child.name %></td>
+                  <td><%= serviceAcc.assets_name %></td>
+                  <td><%= serviceAcc.strike_rate %></td>
+                  <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
+                  <td><%= serviceAcc.closing_rate %></td>
+                  <td><%= serviceAcc.investment %></td>
+                  <td><%= serviceAcc.payout %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% service.service_accounts.each do |serviceAcc| %>
+            <% if  serviceAcc.user_id == current_user.id %>
+              <tr>
+                <td><%= service.name %></td>
+                <td><%= serviceAcc.assets_name %></td>
+                <td><%= serviceAcc.strike_rate %></td>
+                <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
+                <td><%= serviceAcc.closing_rate %></td>
+                <td><%= serviceAcc.investment %></td>
+                <td><%= serviceAcc.payout %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
