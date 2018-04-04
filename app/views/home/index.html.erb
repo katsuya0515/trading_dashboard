@@ -35,7 +35,7 @@
                       <table id="bootstrap-data-table-wallet-<%= service.name.parameterize %>" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                          <th>Service Name</th>
+                            <th>Service Name</th>
                             <th>Wallet Amount</th>
                           </tr>
                         </thead>
@@ -58,7 +58,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-12">
+                  <div class="col-md-8">
                     <div class="card">
                       <div class="card-header">
                         <strong class="card-title">Betting Histroy</strong>
@@ -85,7 +85,7 @@
                                       <td><%= child.name %></td>
                                       <td><%= serviceAcc.assets_name %></td>
                                       <td><%= serviceAcc.strike_rate %></td>
-                                      <td><%= serviceAcc.status %></td>
+                                      <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
                                       <td><%= serviceAcc.closing_rate %></td>
                                       <td><%= serviceAcc.investment %></td>
                                       <td><%= serviceAcc.payout %></td>
@@ -100,7 +100,7 @@
                                     <td><%= service.name %></td>
                                     <td><%= serviceAcc.assets_name %></td>
                                     <td><%= serviceAcc.strike_rate %></td>
-                                    <td><%= serviceAcc.status %></td>
+                                    <td><%= serviceAcc.status ? "Opened" : "Closed" %></td>
                                     <td><%= serviceAcc.closing_rate %></td>
                                     <td><%= serviceAcc.investment %></td>
                                     <td><%= serviceAcc.payout %></td>
@@ -113,6 +113,53 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <strong class="card-title">Control UI</strong>
+                      </div>
+                      <table id="bootstrap-data-table-wallet-<%= service.name.parameterize %>" class="table table-striped table-bordered">
+                        <% count = 0 %>
+                        <% revenue = 0 %>
+                        <% average = 0 %>
+                          <% if service.childs.present? %>
+                            <% service.childs.each do |child| %>
+                              <% child.service_accounts.each do |serviceAcc| %>
+                                <% if  serviceAcc.user_id == current_user.id %>
+                                    <% count = count + 1 %>
+                                    <% revenue = revenue + (serviceAcc.payout - serviceAcc.investment) %>
+                                <% end %>
+                              <% end %>
+                              <% average = (revenue / count) %>
+                            <% end %>
+                          <% else %>
+                            <% service.service_accounts.each do |serviceAcc| %>
+                              <% if  serviceAcc.user_id == current_user.id %>
+                                <% count = count + 1 %>
+                                <% revenue = revenue + (serviceAcc.payout - serviceAcc.investment) %>
+                              <% end %>
+                              <% average = (revenue / count) %>
+                            <% end %>
+                          <% end %>
+                        <thead>
+                          <tr>
+                            <th>Count</th>
+                            <td><%= count %></td>
+                          </tr>
+                          <tr>
+                            <th>Revenue</th>
+                            <td><%= revenue %></td>
+                          </tr>
+                          <tr>
+                            <th>Average</th>
+                            <td><%= average %></td>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+
                 </div>
               <% end %>
           </div>
