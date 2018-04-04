@@ -60,16 +60,26 @@ end
 
 # create Services Account
 service_accounts_list_atrributes = [
-	{id:1, user_service_id:1 , assets_name: "USD/CAD", strike_rate: 1.33222, status: false, closing_rate: 10.5423, investment: 1100, payout: 1150 , user_id:1, service_id: 4},
-	{id:2, user_service_id:2 , assets_name: "USD/CAD", strike_rate: 2.33222, status: false, closing_rate: 9.5423, investment: 2200, payout: 2250 , user_id:1, service_id: 5},
-	{id:3, user_service_id:3 , assets_name: "USD/CAD", strike_rate: 3.33222, status: true, closing_rate: 8.5423, investment: 3300, payout: 3350 , user_id:1, service_id: 6},
-	{id:4, user_service_id:4 , assets_name: "USD/CAD", strike_rate: 4.33222, status: false, closing_rate: 7.5423, investment: 4800, payout: 4450 , user_id:1, service_id: 3},
-  {id:5, user_service_id:5 , assets_name: "USD/CAD", strike_rate: 5.33222, status: false, closing_rate: 6.5423, investment: 5800, payout: 5550, user_id:2, service_id: 4},
-	{id:6, user_service_id:6 , assets_name: "USD/CAD", strike_rate: 6.33222, status: false, closing_rate: 5.5423, investment: 6900, payout: 66050, user_id:2, service_id: 5},
-	{id:7, user_service_id:7 , assets_name: "USD/CAD", strike_rate: 7.33222, status: false, closing_rate: 4.5423, investment: 7900, payout: 7750, user_id:2, service_id: 3},
-	{id:8, user_service_id:8 , assets_name: "USD/CAD", strike_rate: 8.33222, status: false, closing_rate: 3.5423, investment: 8900, payout: 8850 , user_id:3, service_id: 4},
-	{id:9, user_service_id:9 , assets_name: "USD/CAD", strike_rate: 9.33222, status: true, closing_rate: 2.5423, investment: 9900, payout: 9950 , user_id:3, service_id: 5},
-  {id:10, user_service_id:10 , assets_name: "USD/CAD", strike_rate: 10.33222, status: false, closing_rate: 1.5423, investment: 10900, payout: 10950 , user_id:3, service_id: 6},
+	{ id: 1, user_service_id: 1, assets_name: "USD/CAD", strike_rate: "1.23942", status: false, closing_rate: "1.23932", investment: "5000", payout: "6500", user_id: 1, service_id: 4 },
+	{ id: 2, user_service_id: 2, assets_name: "USD/CAD", strike_rate: "1.23940", status: false, closing_rate: "1.23932", investment: "4000", payout: "6900", user_id: 1, service_id: 5 },
+	{ id: 3, user_service_id: 3, assets_name: "USD/CAD", strike_rate: "1.23935", status: true, closing_rate: "1.23932", investment: "4500", payout: "7000", user_id: 1, service_id: 6 },
+	{ id: 4, user_service_id: 4, assets_name: "USD/CAD", strike_rate: "1.23948", status: false, closing_rate: "1.23932", investment: "4800", payout: "8000", user_id: 1, service_id: 3 },
+	{ id: 5, user_service_id: 5, assets_name: "USD/CHF", strike_rate: "0.95601", status: false, closing_rate: "0.95618", investment: "7500", payout: "9900", user_id: 2, service_id: 4 },
+	{ id: 6, user_service_id: 6, assets_name: "USD/CHF", strike_rate: "0.95601", status: false, closing_rate: "0.95618", investment: "6000", payout: "4900", user_id: 2, service_id: 5 },
+	{ id: 7, user_service_id: 7, assets_name: "NZD/USD", strike_rate: "0.72021", status: true, closing_rate: "0.71975", investment: "4000", payout: "5900", user_id: 2, service_id: 3 },
+	{ id: 8, user_service_id: 8, assets_name: "USD/CAD", strike_rate: "1.21305", status: false, closing_rate: "1.21186", investment: "1000", payout: "6900", user_id: 3, service_id: 4 },
+	{ id: 9, user_service_id: 9, assets_name: "AUD/USD", strike_rate: "0.80808", status: false, closing_rate: "0.80774", investment: "2300", payout: "7900", user_id: 3, service_id: 5 },
+	{ id: 10, user_service_id: 10, assets_name: "AUD/USD", strike_rate: "0.80769", status: true, closing_rate: "0.80774", investment: "2400", payout: "7400", user_id: 3, service_id: 6 },
+	{ id: 11, user_service_id: 1, assets_name: "AUD/USD", strike_rate: "0.80752", status: false, closing_rate: "0.80774", investment: "2500", payout: "8400", user_id: 1, service_id: 4 },
+	{ id: 12, user_service_id: 2, assets_name: "AUD/USD", strike_rate: "0.80765", status: false, closing_rate: "0.80774", investment: "3600", payout: "6400", user_id: 1, service_id: 5 },
+	{ id: 13, user_service_id: 3, assets_name: "NZD/USD", strike_rate: "0.72760", status: true, closing_rate: "0.72720", investment: "1700", payout: "2400", user_id: 1, service_id: 6 },
+	{ id: 14, user_service_id: 4, assets_name: "NZD/USD", strike_rate: "0.72766", status: false, closing_rate: "0.72720", investment: "1800", payout: "3400", user_id: 1, service_id: 3 },
+	{ id: 15, user_service_id: 5, assets_name: "NZD/USD", strike_rate: "0.72766", status: false, closing_rate: "0.72720", investment: "3600", payout: "4900", user_id: 2, service_id: 4 },
+	{ id: 16, user_service_id: 6, assets_name: "USD/CAD", strike_rate: "1.21050", status: true, closing_rate: "1.21045", investment: "3100", payout: "4400", user_id: 2, service_id: 5 },
+	{ id: 17, user_service_id: 7, assets_name: "EUR/GBP", strike_rate: "0.90730", status: false, closing_rate: "0.90732", investment: "2100", payout: "4900", user_id: 2, service_id: 3 },
+	{ id: 18, user_service_id: 8, assets_name: "EUR/GBP", strike_rate: "0.90724", status: false, closing_rate: "0.90732", investment: "2200", payout: "4000", user_id: 3, service_id: 4 },
+	{ id: 19, user_service_id: 9, assets_name: "NZD/USD", strike_rate: "0.72320", status: true, closing_rate: "0.72325", investment: "4400", payout: "5400", user_id: 3, service_id: 5 },
+	{ id: 20, user_service_id: 10, assets_name: "NZD/USD", strike_rate: "0.72325", status: false, closing_rate: "0.72325", investment: "4400", payout: "5900", user_id: 3, service_id: 6 }
 ]
 
 service_accounts_list_atrributes.each do |attributes|
