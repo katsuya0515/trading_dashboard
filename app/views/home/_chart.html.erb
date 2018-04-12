@@ -1,4 +1,4 @@
 <p><%= service.name %></p>
-<div id="chart-container-<%= service.name.parameterize %>">
+<div id="chart-container-<%= service.name.parameterize %>" class="chart-div">
   <%= service.chart(current_user.id) %>
 </div>

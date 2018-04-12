@@ -2249,3 +2249,32 @@ header .form-inline {
     right: 10px;
     top: 140px;
 }
+
+
+.chart-div{
+  position: relative;
+  text-align: left;
+  line-height: normal;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+  font-weight: normal;
+  font-variant: normal;
+  font-style: normal;
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  direction: ltr;
+  width: 100%;
+  height: 400px;
+}
+
+
+@media (max-width: 767px){
+  /* .chart-div { width: 90%; } */
+  .row.chart-wallet{display: table-cell;}
+}
+
+
+.wallet-table div.dataTables_wrapper div.dataTables_filter input{width:100% !important;}

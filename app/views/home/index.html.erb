@@ -3,7 +3,7 @@
     <h1>Welcome..!!</h1>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12">
       <div class="card">
         <div class="card-header">
           <h4>Default Tab</h4>
@@ -20,25 +20,25 @@
             <div class="tab-content pl-3 pt-2" id="nav-tabContent">
               <% @services.each_with_index do |service, index|%>
                 <div class="tab-pane fade show <%= 'active' if index == 0 %>" id="nav-<%= service.name.parameterize %>" role="tabpanel" aria-labelledby="nav-<%= service.name.parameterize %>-tab">
-                  <div class="col-md-8">
-                    <%= render partial: 'home/chart', locals: { service: service } %>
+                  <div class="row chart-wallet">
+                    <div class="col-lg-7 col-md-12">
+                      <%= render partial: 'home/chart', locals: { service: service } %>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                      <%= render partial: 'home/wallet', locals: { service: service } %>
+                    </div>
                   </div>
-
-                  <div class="col-md-4">
-                    <%= render partial: 'home/wallet', locals: { service: service } %>
+                  <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                      <%= render partial: 'home/betting', locals: { service: service } %>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                      <%= render partial: 'home/control_ui', locals: { service: service } %>
+                    </div>
                   </div>
-
-                  <div class="col-md-8">
-                    <%= render partial: 'home/betting', locals: { service: service } %>
-                  </div>
-
-                  <div class="col-md-4">
-                    <%= render partial: 'home/control_ui', locals: { service: service } %>
-                  </div>
-
                 </div>
               <% end %>
-          </div>
+            </div>
           </div>
         </div>
       </div>
@@ -54,6 +54,8 @@
       // $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({responsive: true});
 
       var table<%= index %> = $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({
+        "scrollX": true,
+        responsive: true,
           "columnDefs": [
               { "visible": false, "targets": 0 }
           ],
