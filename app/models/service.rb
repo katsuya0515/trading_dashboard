@@ -51,7 +51,7 @@ class Service < ApplicationRecord
     end
 
     @chart = Fusioncharts::Chart.new({
-      width: "600",
+      width: "100%",
       height: "400",
       type: "mscombidy2d",
       renderAt: "chart-container-#{self.name.parameterize}",
