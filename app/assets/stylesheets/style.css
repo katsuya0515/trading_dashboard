@@ -2270,6 +2270,10 @@ header .form-inline {
   height: 400px;
 }
 
+.chart-wallet ul.panel-tabs{width: 100%;padding: 20px 0;}
+.chart-wallet ul.panel-tabs li a{padding: 10px 20px;background: #e9ecef;margin-right: 10px;border-radius: 5px;color:#495057;}
+.chart-wallet ul.panel-tabs li.active a{color:#495057;}
+.chart-wallet ul.panel-tabs li:hover a,.chart-wallet ul.panel-tabs li.active a{background: #a7b1bb;color: #000;}
 
 @media (max-width: 767px){
   /* .chart-div { width: 90%; } */
@@ -2278,3 +2282,9 @@ header .form-inline {
 
 
 .wallet-table div.dataTables_wrapper div.dataTables_filter input{width:100% !important;}
+
+
+@media screen and (max-width: 991px){
+
+
+}
