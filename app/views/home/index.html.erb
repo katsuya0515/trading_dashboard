@@ -1,82 +1,78 @@
-<div class="container">
-  <!-- <div class="page-header">
-    <h1>Welcome..!!</h1>
-  </div> -->
-  <div class="row">
-    <div class="col-md-12 col-sm-12">
-      <div class="card">
-        <!-- <div class="card-header">
-          <h4>Default Tab</h4>
-        </div> -->
-        <div class="card-body">
-          <div class="default-tab">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <% @services.each_with_index do |service, index|%>
-                  <a class="nav-item nav-link <%= 'active' if index == 0 %>" id="nav-<%= service.name.parameterize %>-tab" data-toggle="tab" href="#nav-<%= service.name.parameterize %>" role="tab" aria-controls="nav-<%= service.name.parameterize %>" aria-selected="<% index == 0 ? 'true' : 'false' %>"><%= service.name %></a>
-                <% end %>
-              </div>
-            </nav>
-            <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-              <% @services.each_with_index do |service, index|%>
-                <div class="tab-pane fade show <%= 'active' if index == 0 %>" id="nav-<%= service.name.parameterize %>" role="tabpanel" aria-labelledby="nav-<%= service.name.parameterize %>-tab">
-                  <div class="row chart-wallet">
+<div class="dashboard-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="dashboard-panel">
+
+          <ul class="nav nav-tabs" id="nav-tab" role="tablist">
+            <% @services.each_with_index do |service, index|%>
+              <li class="<%= 'active' if index == 0 %>">
+                <a data-toggle="tab" id="nav-<%= service.name.parameterize %>-tab" href="#nav-<%= service.name.parameterize %>" aria-controls="nav-<%= service.name.parameterize %>" aria-selected="<% index == 0 ? 'true' : 'false' %>">
+                  <%= service.name %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
 
 
-                    <ul class="nav panel-tabs">
-                        <li class="active">
-                            <a data-toggle="tab" href="#arbitrage">Arbitrage</a>
-                        </li>
-                        <li>
-                            <a  data-toggle="tab" href="#betting" >Batting History</a>
-                        </li>
-                    </ul>
-                    <div class="panel-body">
-                      <div class="tab-content">
-                        <div class="tab-pane active" id="arbitrage">
+          <div class="tab-content pt-4" id="nav-tabContent">
+            <% @services.each_with_index do |service, index|%>
+              <div class="tab-pane fade show <%= 'active' if index == 0 %>" id="nav-<%= service.name.parameterize %>" role="tabpanel" aria-labelledby="nav-<%= service.name.parameterize %>-tab">
 
-                          <div class="col-lg-7 col-md-12">
-                            <%= render partial: 'home/chart', locals: { service: service } %>
-                          </div>
-                          <div class="col-lg-5 col-md-12">
-                            <%= render partial: 'home/wallet', locals: { service: service } %>
-                          </div>
+                <div class="chart-wallet">
+
+                  <ul class="nav panel-tabs mb-4">
+                    <li class="active">
+                      <a data-toggle="tab" href="#arbitrage">Arbitrage</a>
+                    </li>
+                    <li>
+                      <a  data-toggle="tab" href="#betting" >Batting History</a>
+                    </li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="arbitrage">
+                      <div class="row">
+                        <div class="col-xl-8 col-12">
+                          <%= render partial: 'home/chart', locals: { service: service } %>
                         </div>
-                        <div class="tab-pane" id="betting">
-
-                          <div class="col-lg-12 col-xl-7">
-                            <%= render partial: 'home/betting', locals: { service: service } %>
-                          </div>
-                          <div class="col-lg-12 col-xl-5">
-                            <%= render partial: 'home/control_ui', locals: { service: service } %>
-                          </div>
+                        <div class="col-xl-4 col-12">
+                          <%= render partial: 'home/wallet', locals: { service: service } %>
                         </div>
                       </div>
                     </div>
+
+                    <div class="tab-pane" id="betting">
+                      <div class="row">
+                        <div class="col-xl-8 col-12">
+                          <%= render partial: 'home/betting', locals: { service: service } %>
+                        </div>
+                        <div class="col-xl-4 col-12">
+                          <%= render partial: 'home/control_ui', locals: { service: service } %>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-lg-12 col-xl-7">
-                      <%= render partial: 'home/betting', locals: { service: service } %>
-                    </div>
-                    <div class="col-lg-12 col-xl-5">
-                      <%= render partial: 'home/control_ui', locals: { service: service } %>
-                    </div>
-                  </div> -->
+
                 </div>
-              <% end %>
-            </div>
+
+              </div>
+            <% end %>
           </div>
+
         </div>
+
       </div>
     </div>
   </div>
 </div>
 
-
 <script>
   $(document).ready(function() {
    '<% @services.each_with_index do |service, index|%>'
-      $('#bootstrap-data-table-wallet-<%= service.name.parameterize %>').DataTable({responsive: true, dom: "<'row'<'col-sm-12'l><'col-sm-6'f>>"});
+      $('#bootstrap-data-table-wallet-<%= service.name.parameterize %>').DataTable({responsive: true, dom: "<'row'<'col-12 col-md-6'l><'col-12 col-md-6'f>>"});
       // $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({responsive: true});
 
       var table<%= index %> = $('#bootstrap-data-table-betting-<%= service.name.parameterize %>').DataTable({
