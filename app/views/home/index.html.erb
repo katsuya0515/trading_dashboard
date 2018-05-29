@@ -24,15 +24,15 @@
 
                   <ul class="nav panel-tabs mb-4">
                     <li class="active">
-                      <a data-toggle="tab" href="#arbitrage">Arbitrage</a>
+                      <a data-toggle="tab" href="#arbitrage-<%= service.name.parameterize%>">Arbitrage</a>
                     </li>
                     <li>
-                      <a  data-toggle="tab" href="#betting" >Batting History</a>
+                      <a  data-toggle="tab" href="#betting-<%= service.name.parameterize%>" >Batting History</a>
                     </li>
                   </ul>
 
                   <div class="tab-content">
-                    <div class="tab-pane active" id="arbitrage">
+                    <div class="tab-pane active" id="arbitrage-<%= service.name.parameterize%>">
                       <div class="row">
                         <div class="col-xl-8 col-12">
                           <%= render partial: 'home/chart', locals: { service: service } %>
@@ -43,7 +43,7 @@
                       </div>
                     </div>
 
-                    <div class="tab-pane" id="betting">
+                    <div class="tab-pane" id="betting-<%= service.name.parameterize%>">
                       <div class="row">
                         <div class="col-xl-8 col-12">
                           <%= render partial: 'home/betting', locals: { service: service } %>
