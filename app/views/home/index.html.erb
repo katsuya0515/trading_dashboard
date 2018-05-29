@@ -91,7 +91,7 @@
               api<%= index %>.column(0, {page:'current'} ).data().each( function ( group, i ) {
                   if ( last<%= index %> !== group ) {
                       $(rows<%= index %>).eq( i ).before(
-                          '<tr class="group"><td colspan="6">'+group+'</td></tr>'
+                          '<tr class="group"><td>'+group+'</td><td></td><td></td><td></td><td></td><td></td></tr>'
                       );
 
                       last<%= index %> = group;
