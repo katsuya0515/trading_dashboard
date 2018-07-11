@@ -7,42 +7,45 @@ class Service < ApplicationRecord
   def chart(user_id)
     category = []
     data = []
+    data_hash = {}
     betting_count = []
+    betting_count_hash = {}
 
     if self.childs.present?
       self.childs.each do |child|
         @service_accounts = child.service_accounts.where(user_id: user_id).group_by {|t| t.created_at.beginning_of_month.strftime("%b %Y") }
 
-        @service_accounts.values.each do |values|
-          data << {"value": values.pluck(:investment, :payout).map{|revenue| (revenue[0]-revenue[1]).abs}.sum}
+        @service_accounts.each do |k,v|
+          data_hash[k] = []
+          betting_count_hash[k] = []
         end
 
-        @service_accounts.values.each do |values|
-          betting_count << {"value": values.count}
+        @service_accounts.each do |key, values|
+          data_hash[key] << {"value": values.pluck(:investment, :payout).map{|revenue| (revenue[0]-revenue[1]).abs}.sum}
         end
 
-        sumData = 0
-        data.each do |data|
-          sumData += data[:value]
+        @service_accounts.each do |key, values|
+          betting_count_hash[key] << {"value": values.count}
         end
-        data = [{'value': sumData }]
 
-        sumBetting = 0
-        betting_count.each do |data|
-          sumBetting += data[:value]
-        end
-        betting_count = [{'value': sumBetting }]
+        data = data_hash.values
+        betting_count = betting_count_hash.values
 
       end
     else
       @service_accounts = self.service_accounts.where(user_id: user_id).group_by {|t| t.created_at.beginning_of_month.strftime("%b %Y") }
 
-      @service_accounts.values.each do |values|
-        data << {"value": values.pluck(:investment, :payout).map{|revenue| (revenue[0]-revenue[1]).abs}.sum}
+      @service_accounts.each do |k,v|
+        data_hash[k] = []
+        betting_count_hash[k] = []
       end
 
-      @service_accounts.values.each do |values|
-        betting_count << {"value": values.count}
+      @service_accounts.each do |key, values|
+        data_hash[key] << {"value": values.pluck(:investment, :payout).map{|revenue| (revenue[0]-revenue[1]).abs}.sum}
+      end
+
+      @service_accounts.each do |key, values|
+        betting_count_hash[key] << {"value": values.count}
       end
     end
 
