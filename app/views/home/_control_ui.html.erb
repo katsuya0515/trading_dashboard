@@ -12,7 +12,7 @@
                 <% revenue = revenue + (serviceAcc.payout - serviceAcc.investment) %>
             <% end %>
           <% end %>
-          <% average = (revenue / count) %>
+          <% average = (revenue / count) if count != 0 %>
         <% end %>
       <% else %>
         <% service.service_accounts.each do |serviceAcc| %>
@@ -20,7 +20,7 @@
             <% count = count + 1 %>
             <% revenue = revenue + (serviceAcc.payout - serviceAcc.investment) %>
           <% end %>
-          <% average = (revenue / count) %>
+          <% average = (revenue / count) if count != 0 %>
         <% end %>
       <% end %>
     <thead>
