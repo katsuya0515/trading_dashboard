@@ -47,6 +47,8 @@ class Service < ApplicationRecord
       @service_accounts.each do |key, values|
         betting_count_hash[key] << {"value": values.count}
       end
+      data = data_hash.values
+      betting_count = betting_count_hash.values
     end
 
     @service_accounts.keys.each do |month|
